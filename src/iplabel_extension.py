@@ -20,7 +20,6 @@ class IpLabelExtension(RemoteBasePlugin):
         self.dt_client = Dynatrace(self.config.get("api_url"), self.config.get(
             "api_token"), log=log, proxies=self.build_proxy_url())
         self.executions = 0
-        self.failures_detected = 0
 
     def build_proxy_url(self):
         proxy_address = self.config.get("proxy_address")
@@ -102,7 +101,10 @@ class IpLabelExtension(RemoteBasePlugin):
                     step_title="Overall",
                     schedule_interval=instance["Frequency"],
                     success=True,
-                    response_time=value
+                    response_time=value,
+                    edit_link="http://"+domainname,
+                    icon_url="https://github.com/LO-RAN/custom.remote.python.thirdparty_iplabel/raw/master/iplabel.png",
+
                 )
 
                 # get alarms
